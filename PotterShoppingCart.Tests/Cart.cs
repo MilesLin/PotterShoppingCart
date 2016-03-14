@@ -15,15 +15,24 @@ namespace PotterShoppingCart.Tests
         /// </summary>
         /// <param name="books">購買書本資訊</param>
         /// <returns>結帳金額</returns>
-        public int Check(IEnumerable<Book> books)
+        public int Check(List<Book> books)
         {
-            int sum = books.Sum(x => x.Quantity * x.Price);
+            int maxQuantity = books.Max(x => x.Quantity);
 
-            double discount = this.GetDiscount(books);            
+            int result = 0;
 
-            double totalPrice = sum * discount;
+            for (int i = 0; i < maxQuantity; i++)
+            {                              
+                int sum = books.Where(x => x.Quantity > 0).Sum(x => x.Price);
 
-            var result = (int)Math.Round(totalPrice, 0, MidpointRounding.AwayFromZero);
+                double discount = this.GetDiscount(books);
+
+                double totalPrice = sum * discount;
+
+                result += (int)Math.Round(totalPrice, 0, MidpointRounding.AwayFromZero);
+
+                books.ForEach(x => x.Quantity -= 1);
+            }                       
 
             return result;
         }
@@ -35,7 +44,8 @@ namespace PotterShoppingCart.Tests
         /// <returns>折扣</returns>
         private double GetDiscount(IEnumerable<Book> books)
         {
-            int differentSeriesQuantity = books.Select(x => x.SeriesNumber)
+            int differentSeriesQuantity = books.Where(x => x.Quantity > 0)
+                                               .Select(x => x.SeriesNumber)
                                                .Distinct()
                                                .Count();
 
