@@ -241,6 +241,45 @@ namespace PotterShoppingCart.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        
+        [TestMethod]
+        public void CheckTest_Buy_1_ChapterOne_2_ChapterTwo_2_ChapterThree()
+        {
+            //arrange
+            List<Book> books = new List<Book>()
+            {
+                new Book()
+                {
+                    SeriesNumber = 1,
+                    Name = "哈利波特第一集",
+                    Quantity = 1,
+                    Price = 100
+                },new Book()
+                {
+                    SeriesNumber = 2,
+                    Name = "哈利波特第二集",
+                    Quantity = 2,
+                    Price = 100
+                },
+                new Book()
+                {
+                    SeriesNumber = 3,
+                    Name = "哈利波特第三集",
+                    Quantity = 2,
+                    Price = 100
+                }                
+            };
+
+            int expected = 460;
+
+            var target = new Cart();
+
+            //act
+            int actual = target.Check(books);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
     
     }
 }
