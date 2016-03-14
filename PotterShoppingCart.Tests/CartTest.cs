@@ -63,7 +63,7 @@ namespace PotterShoppingCart.Tests
             int actual = target.Check(books);
 
             //assert
-            Assert.AreEqual(expected, actual);        
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -137,7 +137,6 @@ namespace PotterShoppingCart.Tests
                     Quantity = 1,
                     Price = 100
                 },
-                
             };
 
             int expected = 320;
@@ -189,7 +188,6 @@ namespace PotterShoppingCart.Tests
                     Quantity = 1,
                     Price = 100
                 },
-                
             };
 
             int expected = 375;
@@ -228,7 +226,7 @@ namespace PotterShoppingCart.Tests
                     Name = "哈利波特第三集",
                     Quantity = 2,
                     Price = 100
-                }                
+                }
             };
 
             int expected = 370;
@@ -241,7 +239,7 @@ namespace PotterShoppingCart.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
-        
+
         [TestMethod]
         public void CheckTest_Buy_1_ChapterOne_2_ChapterTwo_2_ChapterThree()
         {
@@ -267,7 +265,7 @@ namespace PotterShoppingCart.Tests
                     Name = "哈利波特第三集",
                     Quantity = 2,
                     Price = 100
-                }                
+                }
             };
 
             int expected = 460;
@@ -280,6 +278,5 @@ namespace PotterShoppingCart.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
-    
     }
 }

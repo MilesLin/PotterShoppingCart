@@ -22,7 +22,7 @@ namespace PotterShoppingCart.Tests
             int result = 0;
 
             for (int i = 0; i < maxQuantity; i++)
-            {                              
+            {
                 int sum = books.Where(x => x.Quantity > 0).Sum(x => x.Price);
 
                 double discount = this.GetDiscount(books);
@@ -32,7 +32,7 @@ namespace PotterShoppingCart.Tests
                 result += (int)Math.Round(totalPrice, 0, MidpointRounding.AwayFromZero);
 
                 books.ForEach(x => x.Quantity -= 1);
-            }                       
+            }
 
             return result;
         }
@@ -51,16 +51,19 @@ namespace PotterShoppingCart.Tests
 
             double discount = 1;
             switch (differentSeriesQuantity)
-            {                
+            {
                 case 2:
                     discount = 0.95;
                     break;
+
                 case 3:
                     discount = 0.9;
-                    break;                
+                    break;
+
                 case 4:
                     discount = 0.8;
                     break;
+
                 case 5:
                     discount = 0.75;
                     break;
@@ -68,7 +71,5 @@ namespace PotterShoppingCart.Tests
 
             return discount;
         }
-
-        
     }
 }
