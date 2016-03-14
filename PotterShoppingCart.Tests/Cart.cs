@@ -19,15 +19,40 @@ namespace PotterShoppingCart.Tests
         {
             int sum = books.Sum(x => x.Quantity * x.Price);
 
-            double discount = books.Select(x => x.SeriesNumber)
-                                .Distinct()
-                                .Count() == 2 ? 0.95 : 1;
-            
+            double discount = this.GetDiscount(books);            
+
             double totalPrice = sum * discount;
 
             var result = (int)Math.Round(totalPrice, 0, MidpointRounding.AwayFromZero);
 
             return result;
         }
+
+        /// <summary>
+        /// 取得折扣
+        /// </summary>
+        /// <param name="books">書本資訊</param>
+        /// <returns>折扣</returns>
+        private double GetDiscount(IEnumerable<Book> books)
+        {
+            int differentSeriesQuantity = books.Select(x => x.SeriesNumber)
+                                               .Distinct()
+                                               .Count();
+
+            double discount = 1;
+            switch (differentSeriesQuantity)
+            {                
+                case 2:
+                    discount = 0.95;
+                    break;
+                case 3:
+                    discount = 0.9;
+                    break;                
+            }
+
+            return discount;
+        }
+
+        
     }
 }
