@@ -53,6 +53,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Cart.cs" />
+    <Compile Include="CartTest.cs" />
+    <Compile Include="Model\Book.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
